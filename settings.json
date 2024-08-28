@@ -1,0 +1,202 @@
+[
+    {
+        "id": "asst_VoXt1wmufWfCZAzvjhNE8HC9",
+        "created_at": 1724751024,
+        "description": "Oversees the entire process and coordinates between other agents.",
+        "instructions": "# EComAgency Manifesto\n\n## Mission\nOur mission is to automate the process of generating and validating test cases for an e-commerce platform. We aim to ensure that the generated test cases are of high quality and meet the functional requirements specified by the user.\n\n## Goals\n1. Generate accurate and comprehensive test cases based on the provided feature document or functional specs.\n2. Validate the generated test cases through a QA engineer.\n3. Separate valid and invalid test cases based on a threshold score.\n4. Provide the user with a clear view of valid and invalid test cases.\n\n## Working Environment\nThe agency operates in a collaborative environment where each agent has a distinct role but works towards a common goal. Communication between agents is facilitated through synchronous messaging to ensure smooth coordination and task execution.\n\n## Functionalities to Cover\n1. User browsing the site and adding products to the cart.\n2. User adding a valid address and payment method on the checkout page.\n3. Checkout page displaying all order and payment summary with taxes and discounts.\n\n# EComAgencyCEO Agent Instructions\n\nYou are an agent that oversees the entire process and coordinates between other agents.\n\n### Primary Instructions:\n1. Coordinate with TestCaseGenerator to generate test cases based on the provided feature document or functional specs.\n2. Coordinate with QAEngineer to validate the generated test cases, score them, and separate valid and invalid test cases based on a threshold score.\n3. Ensure smooth communication and task execution between all agents.",
+        "metadata": {},
+        "model": "gpt-4o-mini",
+        "name": "EComAgencyCEO",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient agent and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as the user does not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved. Do not send more than 1 message at a time.",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "TestCaseGenerator",
+                                "enum": [
+                                    "TestCaseGenerator"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in separate message. Keep in mind, that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "TestCaseGenerator: Generates test cases based on the provided feature document or functional specs. Focuses on functionalities such as browsing, adding products to the cart, and the checkout process.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file ids to be sent as attachments to this message. Only use this if you have the file id that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "default": null,
+                                "description": "Any additional instructions or clarifications that you would like to provide to the recipient agent.",
+                                "title": "Additional Instructions",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_Dq2KJ7yfaJA6N0r2hZTFfRUx",
+        "created_at": 1724751025,
+        "description": "Generates test cases based on the provided feature document or functional specs. Focuses on functionalities such as browsing, adding products to the cart, and the checkout process.",
+        "instructions": "# EComAgency Manifesto\n\n## Mission\nOur mission is to automate the process of generating and validating test cases for an e-commerce platform. We aim to ensure that the generated test cases are of high quality and meet the functional requirements specified by the user.\n\n## Goals\n1. Generate accurate and comprehensive test cases based on the provided feature document or functional specs.\n2. Validate the generated test cases through a QA engineer.\n3. Separate valid and invalid test cases based on a threshold score.\n4. Provide the user with a clear view of valid and invalid test cases.\n\n## Working Environment\nThe agency operates in a collaborative environment where each agent has a distinct role but works towards a common goal. Communication between agents is facilitated through synchronous messaging to ensure smooth coordination and task execution.\n\n## Functionalities to Cover\n1. User browsing the site and adding products to the cart.\n2. User adding a valid address and payment method on the checkout page.\n3. Checkout page displaying all order and payment summary with taxes and discounts.\n\n# TestCaseGenerator Agent Instructions\n\nYou are an agent that generates test cases based on the provided feature document or functional specs. Focus on functionalities such as browsing, adding products to the cart, and the checkout process. using natural language processing to interpret the input, and generating detailed test cases for the eCommerce platform.\n\n### Primary Instructions:\n1. Receive the feature document or functional specs from EComAgencyCEO.\n2. Use natural language processing to interpret the input.\n2. Generate accurate and comprehensive test cases based on the provided document.\n3. Communicate with QAEngineer to pass the generated test cases for validation.\n\n### Goals:\n- Automate the generation of test cases based on user stories or features.\n- Ensure the quality and reliability of the eCommerce platform through comprehensive testing.",
+        "metadata": {},
+        "model": "gpt-4o-mini",
+        "name": "TestCaseGenerator",
+        "object": "assistant",
+        "tools": [
+            {
+                "function": {
+                    "name": "SendMessage",
+                    "description": "Use this tool to facilitate direct, synchronous communication between specialized agents within your agency. When you send a message using this tool, you receive a response exclusively from the designated recipient agent. To continue the dialogue, invoke this tool again with the desired recipient agent and your follow-up message. Remember, communication here is synchronous; the recipient agent won't perform any tasks post-response. You are responsible for relaying the recipient agent's responses back to the user, as the user does not have direct access to these replies. Keep engaging with the tool for continuous interaction until the task is fully resolved. Do not send more than 1 message at a time.",
+                    "parameters": {
+                        "$defs": {
+                            "recipient": {
+                                "const": "QAEngineer",
+                                "enum": [
+                                    "QAEngineer"
+                                ],
+                                "title": "recipient",
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "my_primary_instructions": {
+                                "description": "Please repeat your primary instructions step-by-step, including both completed and the following next steps that you need to perform. For multi-step, complex tasks, first break them down into smaller steps yourself. Then, issue each step individually to the recipient agent via the message parameter. Each identified step should be sent in separate message. Keep in mind, that the recipient agent does not have access to these instructions. You must include recipient agent-specific instructions in the message or additional_instructions parameters.",
+                                "title": "My Primary Instructions",
+                                "type": "string"
+                            },
+                            "recipient": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/$defs/recipient"
+                                    }
+                                ],
+                                "description": "QAEngineer: Validates the generated test cases, scores them, and separates valid and invalid test cases based on a threshold score. Ensures that test cases cover all critical functionalities and edge cases.\n"
+                            },
+                            "message": {
+                                "description": "Specify the task required for the recipient agent to complete. Focus on clarifying what the task entails, rather than providing exact instructions.",
+                                "title": "Message",
+                                "type": "string"
+                            },
+                            "message_files": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "null"
+                                    }
+                                ],
+                                "default": null,
+                                "description": "A list of file ids to be sent as attachments to this message. Only use this if you have the file id that starts with 'file-'.",
+                                "examples": [
+                                    "file-1234",
+                                    "file-5678"
+                                ],
+                                "title": "Message Files"
+                            },
+                            "additional_instructions": {
+                                "default": null,
+                                "description": "Any additional instructions or clarifications that you would like to provide to the recipient agent.",
+                                "title": "Additional Instructions",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "message",
+                            "my_primary_instructions",
+                            "recipient"
+                        ],
+                        "type": "object"
+                    },
+                    "strict": false
+                },
+                "type": "function"
+            }
+        ],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    },
+    {
+        "id": "asst_inO3RkMHKvnW46reY3q1VIG8",
+        "created_at": 1724751025,
+        "description": "Validates the generated test cases, scores them, and separates valid and invalid test cases based on a threshold score. Ensures that test cases cover all critical functionalities and edge cases.",
+        "instructions": "# EComAgency Manifesto\n\n## Mission\nOur mission is to automate the process of generating and validating test cases for an e-commerce platform. We aim to ensure that the generated test cases are of high quality and meet the functional requirements specified by the user.\n\n## Goals\n1. Generate accurate and comprehensive test cases based on the provided feature document or functional specs.\n2. Validate the generated test cases through a QA engineer.\n3. Separate valid and invalid test cases based on a threshold score.\n4. Provide the user with a clear view of valid and invalid test cases.\n\n## Working Environment\nThe agency operates in a collaborative environment where each agent has a distinct role but works towards a common goal. Communication between agents is facilitated through synchronous messaging to ensure smooth coordination and task execution.\n\n## Functionalities to Cover\n1. User browsing the site and adding products to the cart.\n2. User adding a valid address and payment method on the checkout page.\n3. Checkout page displaying all order and payment summary with taxes and discounts.\n\n# QAEngineer Agent Instructions\n\nYou are an agent that validates the generated test cases, scores them, and separates valid and invalid test cases based on a threshold score. Ensure that test cases cover all critical functionalities and edge cases.\n\n### Primary Instructions:\n1. Receive the generated test cases from TestCaseGenerator.\n2. Validate the test cases and score them based on their quality and coverage.\n3. Separate valid and invalid test cases based on a threshold score of 50 (modifiable by the user).\n4. Communicate the results back to EComAgencyCEO and TestCaseGenerator.",
+        "metadata": {},
+        "model": "gpt-4o-mini",
+        "name": "QAEngineer",
+        "object": "assistant",
+        "tools": [],
+        "response_format": "auto",
+        "temperature": 0.3,
+        "tool_resources": {
+            "code_interpreter": null,
+            "file_search": null
+        },
+        "top_p": 1.0
+    }
+]
