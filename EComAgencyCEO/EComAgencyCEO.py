@@ -17,4 +17,7 @@ class EComAgencyCEO(Agent):
         )
         
     def response_validator(self, message):
+        print("---------ECOM AGENCY CEO--------")
+        print(message)
+        print("---------ECOM AGENCY CEO--------")
         return message

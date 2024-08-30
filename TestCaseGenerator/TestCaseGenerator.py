@@ -17,4 +17,7 @@ class TestCaseGenerator(Agent):
         )
         
     def response_validator(self, message):
+        print("---------TASE CASE GENERATOR--------")
+        print(message)
+        print("---------TASE CASE GENERATOR--------")
         return message

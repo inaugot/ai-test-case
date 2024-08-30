@@ -17,4 +17,7 @@ class QAEngineer(Agent):
         )
 
     def response_validator(self, message):
+        print("---------QA ENGINEER--------")
+        print(message)
+        print("---------QA ENGINEER--------")
         return message

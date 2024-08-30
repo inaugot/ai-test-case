@@ -8,6 +8,7 @@ Our mission is to automate the process of generating and validating test cases f
 2. Validate the generated test cases through a QA engineer.
 3. Separate valid and invalid test cases based on a threshold score.
 4. Provide the user with a clear view of valid and invalid test cases.
+5. Test cases must have all pre conditions and steps to test.
 
 ## Working Environment
 The agency operates in a collaborative environment where each agent has a distinct role but works towards a common goal. Communication between agents is facilitated through synchronous messaging to ensure smooth coordination and task execution.
